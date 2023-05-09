@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+ul {
+  list-style-type: none;
+  text-align: start;
+}
+</style>
+<div class="container">
+    <h1>About HAM10000 and the Skin Lesion Classification Model</h1>
+    <hr>
+    <h2>Overview of HAM10000</h2>
+    <p>
+        The HAM10000 dataset is a collection of dermatoscopic images of various skin lesions, consisting of seven different classes. Each class represents a distinct type of skin lesion, as described below:
+    </p>
+    <ul>
+        <li><strong>akiec:</strong> <a href="https://en.wikipedia.org/wiki/Actinic_keratosis">Actinic keratoses</a> and <a href="https://en.wikipedia.org/wiki/Bowen%27s_disease">intraepithelial carcinoma / Bowen's disease</a></li>
+        <li><strong>bcc:</strong> <a href="https://en.wikipedia.org/wiki/Basal-cell_carcinoma">Basal cell carcinoma</a></li>
+        <li><strong>bkl:</strong> Benign keratosis-like lesions, including <a href="https://en.wikipedia.org/wiki/Seborrheic_keratosis">seborrheic keratoses</a> and <a href="https://en.wikipedia.org/wiki/Solar_lentigo">solar lentigines</a></li>
+        <li><strong>df:</strong> <a href="https://en.wikipedia.org/wiki/Dermatofibroma">Dermatofibroma</a></li>
+        <li><strong>mel:</strong> <a href="https://en.wikipedia.org/wiki/Melanoma">Melanoma</a></li>
+        <li><strong>nv:</strong> <a href="https://en.wikipedia.org/wiki/Melanocytic_nevus">Melanocytic nevi</a></li>
+        <li><strong>vasc:</strong> Vascular lesions, including <a href="https://en.wikipedia.org/wiki/Cherry_angioma">cherry angiomas</a> and <a href="https://en.wikipedia.org/wiki/Angiokeratoma">angiokeratomas</a></li>
+    </ul>
+    <h2>Our Skin Lesion Classification Model</h2>
+    <p>
+        We have developed a machine learning model to classify skin lesions based on the HAM10000 dataset. The model is trained using a convolutional neural network (CNN) architecture, which is particularly well-suited for image classification tasks. By feeding dermatoscopic images of skin lesions into the model, it can predict the class of the lesion with a certain level of accuracy.
+    </p>
+    <p>
+        The model's performance is measured using several classification metrics, including accuracy, precision, recall, and the ROC AUC score. These metrics help us understand the model's strengths and weaknesses in classifying different types of skin lesions. While the model demonstrates satisfactory performance, it is important to remember that it should not be considered a substitute for professional medical advice.
+    </p>
+    <p>
+        Our web application offers an accessible platform for users to upload images of skin lesions and obtain classification results based on the trained model. By presenting the results in a clear and intuitive manner, users can gain insights into the potential class of a given skin lesion, which may help guide further medical consultation and decision-making.
+    </p>
+</div>
+{% endblock %}

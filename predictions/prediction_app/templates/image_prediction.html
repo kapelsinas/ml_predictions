@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Image Prediction{% endblock %}
+
+{% block content %}
+    <h1 class="my-4">Image Prediction</h1>
+    <form id="image-upload-form" method="post" enctype="multipart/form-data" class="mb-4">
+        {% csrf_token %}
+        <div class="container p-y-1">
+          <div class="row m-b-1">
+            <div class="col-sm-12 ml-auto">
+              <div class="form-group inputDnD">
+                <input style="width: min-content;margin-left: 37%;" type="file" id="image" name="image" class="form-control-file text-primary font-weight-bold" accept="image/*" onchange="readUrl(this)" data-title="Drag and drop a file">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="preview"></div>
+        <button type="submit" class="btn btn-primary mt-2">Predict</button>
+    </form>
+    <div id="prediction-result" class="mb-4"></div>
+    <table id="prediction-table" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Probability</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        function readUrl(input) {
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let imgData = e.target.result;
+            let imgName = input.files[0].name;
+            input.setAttribute("data-title", imgName);
+            // console.log(e.target.result);
+            
+            // Replace the jQuery code with plain JavaScript
+            let preview = document.getElementById('preview');
+            let imageElement = document.createElement('img');
+            imageElement.setAttribute('name', 'image');
+            imageElement.setAttribute('id', 'image');
+            imageElement.setAttribute('src', e.target.result);
+
+            // Add the style attribute to limit the maximum size of the image
+            imageElement.setAttribute('style', 'max-width: 299px; max-height: 299px;');
+
+            preview.innerHTML = '';
+            preview.appendChild(imageElement);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+    </script>
+    <script>
+        document.getElementById("image-upload-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch('/prediction/', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            const tableBody = document.querySelector("#prediction-table tbody");
+            tableBody.innerHTML = '';
+            Object.entries(result.prediction).forEach(([className, probability]) => {
+                const row = document.createElement("tr");
+                const classCell = document.createElement("td");
+                classCell.innerText = className;
+                const probabilityCell = document.createElement("td");
+                probabilityCell.innerText = (probability * 100).toFixed(2) + '%';
+                row.appendChild(classCell);
+                row.appendChild(probabilityCell);
+                tableBody.appendChild(row);
+            });
+        });
+    </script>
+{% endblock %}

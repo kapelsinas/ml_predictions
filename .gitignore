@@ -1,1 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development files
+db.sqlite3
+*.log
+*.pot
+*.pyc
+local_settings.py
+media/
+
+# Static files
+staticfiles/
+
+# Virtual environment
 env/
+predictions/prediction_app/model/model.hdf5
