@@ -16,4 +16,5 @@ staticfiles/
 
 # Virtual environment
 env/
-predictions/prediction_app/model/model.hdf5
+predictions/prediction_app/skinModel/model.hdf5
+predictions/prediction_app/breastModel/model.hdf5

@@ -12,7 +12,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the path to the model file
-model_path = os.path.join(current_dir, 'model', 'model.hdf5')
+model_path = os.path.join(current_dir, 'skinModel', 'model.hdf5')
 
 
 irv2 = tf.keras.applications.InceptionResNetV2(
